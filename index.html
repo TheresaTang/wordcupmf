@@ -4,486 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Document</title>
-  <style>
-    *{
-      margin: 0;
-      padding: 0;
-    }
-
-    ul,ol{
-      list-style: none;
-    }
-
-    body{
-      font-size: 100%;
-      font-family: Helvetica,STHeiti,Droid Sans Fallback;
-      -webkit-tab-highlight-color: rgba(0,0,0,0);
-      -ms-tab-highlight-color: rgba(0,0,0,0);
-      tab-highlight-color: rgba(0,0,0,0);
-    }
-
-    body,html{
-      width: 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-      -webkit-backface-visibility: hidden;     /*背面的可见性*/
-      -moz-backface-visibility: hidden;
-      backface-visibility: hidden;
-    }
-
-    img{
-      display: inline-block;
-    }
-
-    .f12{
-      font-size: 12px;
-    }
-
-    .fr{
-      float: right;
-    }
-
-    .fl{
-      float: left;
-    }
-
-    .cf:after{
-      content: '';
-      display: table;
-      clear: both;
-    }
-
-    .perspective{
-      margin: 0 auto;
-      height: 100%;
-    }
-
-    .load{
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      top: 0;
-      background-color: #43812b;
-      z-index: 1000;
-    }
-
-    .loadImg{
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin: -50px 0 0 -50px;
-      width: 100px;
-      height: 100px;
-    }
-
-    .loadTxt{
-      width: 100px;
-      height: 50px;
-      margin: 0 auto;
-      line-height: 50px;
-      text-align: center;
-      color: #fff86b;
-      font-size: 25px;
-      font-family: Impact,Georgia,"Time New Roman",Times,serif;
-    }
-
-    .circle{
-      background-color: rgba(0,0,0,0);
-      border: 5px solid rgba(251,241,107,0.9);
-      opacity: .9;
-      border-right-color: rgba(0,0,0,0);
-      border-left-color: rgba(0,0,0,0);
-      -webkit-box-shadow: 0 0 30px #fbf49a;
-      -ms-box-shadow: 0 0 30px #fbf49a;
-      box-shadow: 0 0 30px #fbf49a;
-      width: 50px;
-      height: 50px;
-      margin: 0 auto;
-      -webkit-border-radius: 50%;
-      -ms-border-radius: 50%;
-      border-radius: 50%;
-      -webkit-animation: spinPulse 1s infinite linear;
-      animation: spinPulse 1s infinite linear;
-    }
-
-    .circle1{
-      background-color: transparent;
-      border: 5px solid rgba(251,241,107,1);
-      opacity: .9;
-      border-right-color: rgba(0,0,0,0);
-      border-left-color: rgba(0,0,0,0);
-      -webkit-box-shadow: 0 0 15px #fbf49a;
-      -ms-box-shadow: 0 0 15px #fbf49a;
-      box-shadow: 0 0 15px #fbf49a;
-      width: 30px;
-      height: 30px;
-      margin: 0 auto;
-      position: relative;
-      top: -50px;
-      -webkit-border-radius: 50%;
-      -ms-border-radius: 50%;
-      border-radius: 50%;
-      -webkit-animation: spinoffPulse 1s infinite linear;
-      animation: spinoffPulse 1s infinite linear;
-    }
-
-    /*global*/
-    .global{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transform-style: preserve-3d;
-      -ms-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-    }
-
-    .screen{
-      -webkit-transform-style: preserve-3d;
-      -ms-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-    }
-
-    .ease{
-      -webkit-transition: all 1.0s ease-in-out;
-      transition: all 1.0s ease-in-out;
-    }
-
-    .animated{
-      -webkit-animation-duration: 1s;
-      animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
-    }
-
-    .layer{
-      position: relative;
-      overflow: hidden;
-    }
-
-    .global,.screen,.layer{
-      z-index: 1
-    }
-
-    .layer1{
-      position: relative;
-      background: url('http://mat1.gtimg.com/sports/worldcup2014/match/page_1.jpg') top center no-repeat;
-      -webkit-background-size: cover;
-      background-size: cover;
-    }
-
-    .layer1 .inner{
-      width: 100%;
-      height: 100%;
-    }
-
-    .layer1 .hd{
-      padding: 10px 30px;
-      color: #9bc894;
-    }
-
-
-    .layer1 .bd{
-      position: absolute;
-      left: 0;
-      top: 7%;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
-
-    .layer1 .animated .mofang{
-      opacity: 1;
-      -webkit-animation: mofang 1.3s linear;
-      animation: mofang 1.3s linear;
-    }
-
-    /*ft*/
-
-    .layer1 .ft{
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      /*right: 0;*/
-    }
-
-    .layer1 .ft .btn{
-      position: relative;
-      height: 37px;
-      margin: 0 auto;
-      text-align: center;
-      color: #435d50;
-      font: 16px/32px "微软雅黑";
-    }
-
-    .layer1 .ft .btn1{
-      background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_1.png') top center no-repeat;
-      -webkit-background-size: 222px 84px;
-      background-size: 222px 84px;
-    }
-
-    .layer1 .ft .btn2{
-      background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_2.png') top center no-repeat;
-      -webkit-background-size: 277px 84px;
-      background-size: 277px 84px;
-    }
-
-    .layer1 .ft .btn3{
-      background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_3.png') top center no-repeat;
-      -webkit-background-size: 320px 84px;
-      background-size: 320px 84px;
-    }
-
-    .layer1 .ft .btn4{
-      background: url('http://mat1.gtimg.com/sports/worldcup2014/match/btn_4.png') top center no-repeat;
-      -webkit-background-size: 100% 84px;
-      background-size: 100% 84px;
-    }
-
-    .layer1 .animated .btn{
-      -webkit-animation-duration: 1s;
-      -ms-animation-duration: 1s;
-      animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-      -ms-animation-fill-mode: both;
-      animation-fill-mode: both;
-      -webkit-animation-name: bounceIn;
-      -ms-animation-name: bounceIn;
-      animation-name: bounceIn;
-    }
-
-    .layer1 .animated .btn1{
-      -webkit-animation-delay: 1.5s;
-      animation-delay: 1.5s;
-    }
-
-    .layer1 .animated .btn2{
-      -webkit-animation-delay: 1s;
-      animation-delay: 1;
-    }
-
-    .layer1 .animated .btn3{
-      -webkit-animation-delay: .5s;
-      animation-delay: .5s;
-    }
-
-    .layer1 .animated .btn4{
-      -webkit-animation-delay: 0s;
-      animation-delay: 0s;
-    }
-
-    .layer1 .ft .btn::before{
-      content: "";
-      position: absolute;
-      top: -9px;
-      left: 50%;
-      margin-left: 35px;
-      width: 51px;
-      height: 12px;
-    }
-
-    .layer1 .ft .btn1:before {
-      background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_1.png) no-repeat;
-      background-size: 51px 12px;
-    }
-
-    .layer1 .ft .btn2:before {
-      background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_2.png) no-repeat;
-      background-size: 51px 12px;
-    }
-
-    .layer1 .ft .btn3:before {
-      background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_3.png) no-repeat;
-      background-size: 51px 12px;
-    }
-
-    .layer1 .ft .btn4:before {
-      background: url(http://mat1.gtimg.com/sports/worldcup2014/match/btn_arr_4.png) no-repeat;
-      background-size: 51px 12px;
-    }
-
-    .layer1 .ft .btn.btnAnimate{
-      -webkit-animation: btn 1s;
-      animation: btn 1s;
-    }
-
-    @-webkit-keyframes spinPulse {
-      0%{
-        -webkit-transform: rotate(160deg);
-                transform: rotate(160deg);
-        opacity: 0;
-        box-shadow: 0 0 1px #2187e7;
-      }
-      50%{
-        -webkit-transform: rotate(145deg);
-                transform: rotate(145deg);
-        opacity: 1;
-      }
-      100%{
-        -webkit-transform: rotate(-320deg);
-                transform: rotate(-320deg);
-        opacity: 0;
-      }
-    }
-@keyframes spinPulse {
-      0%{
-        -webkit-transform: rotate(160deg);
-                transform: rotate(160deg);
-        opacity: 0;
-        box-shadow: 0 0 1px #2187e7;
-      }
-      50%{
-        -webkit-transform: rotate(145deg);
-                transform: rotate(145deg);
-        opacity: 1;
-      }
-      100%{
-        -webkit-transform: rotate(-320deg);
-                transform: rotate(-320deg);
-        opacity: 0;
-      }
-    }
-
-    @-webkit-keyframes spinoffPulse {
-      0%{
-        -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-      }
-      100%{
-        -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-      }
-    }
-@keyframes spinoffPulse {
-      0%{
-        -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-      }
-      100%{
-        -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-      }
-    }
-
-    @-webkit-keyframes mofang {
-      0%,50%{
-        -webkit-transform: scale(0);
-                transform: scale(0);
-        opacity: 0.5;
-      }
-      70%{
-        -webkit-transform: scale(1.5);
-                transform: scale(1.5);
-        opacity: 0.8;
-      }
-      80%{
-        -webkit-transform: scale(0.8);
-                transform: scale(0.8);
-        opacity: 1;
-      }
-      100%{
-        -webkit-transform: scale(1.2);
-                transform: scale(1.2);
-      }
-    }
-@keyframes mofang {
-      0%,50%{
-        -webkit-transform: scale(0);
-                transform: scale(0);
-        opacity: 0.5;
-      }
-      70%{
-        -webkit-transform: scale(1.5);
-                transform: scale(1.5);
-        opacity: 0.8;
-      }
-      80%{
-        -webkit-transform: scale(0.8);
-                transform: scale(0.8);
-        opacity: 1;
-      }
-      100%{
-        -webkit-transform: scale(1.2);
-                transform: scale(1.2);
-      }
-    }
-
-    @-webkit-keyframes bounceIn {
-      0% {
-        opacity: 0;
-        -webkit-transform: scale(.3);
-        transform: scale(.3);
-      }
-
-      50% {
-        opacity: 1;
-        -webkit-transform: scale(1.05);
-        transform: scale(1.05);
-      }
-
-      70% {
-        -webkit-transform: scale(.9);
-        transform: scale(.9);
-      }
-
-      100% {
-        opacity: 1;
-        -webkit-transform: scale(1);
-        transform: scale(1);
-      }
-      }
-
-      @keyframes bounceIn {
-      0% {
-        opacity: 0;
-        -webkit-transform: scale(.3);
-        -ms-transform: scale(.3);
-        transform: scale(.3);
-      }
-
-      50% {
-        opacity: 1;
-        -webkit-transform: scale(1.05);
-        -ms-transform: scale(1.05);
-        transform: scale(1.05);
-      }
-
-      70% {
-        -webkit-transform: scale(.9);
-        -ms-transform: scale(.9);
-        transform: scale(.9);
-      }
-
-      100% {
-        opacity: 1;
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-      }
-    }
-
-    @-webkit-keyframes btn {
-      0%{height: 37px;}
-      50%{height: 84px;}
-      100%{height: 37px;}
-    }
-    @keyframes btn {
-      0%{height: 37px;}
-      50%{height: 84px;}
-      100%{height: 37px;}
-    }
-
-  </style>
+  <link rel="stylesheet" href="./lib/css/stylesheet.css">
+  <script src="./lib/alloy_finger/alloy_finger.js"></script>
+  <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+  <script src="./lib/javascript/worldcupmf.js"></script>
 </head>
 <body>
   <div class="perspective" style="perspective:333.5px">
     <!--loading  -->
-    <div class="load" style="display:none;">
+    <div class="load" style="display:block;">
       <div class="loadImg">
         <div class="loadTxt">loading</div>
         <div class="circle"></div>
@@ -491,7 +20,7 @@
       </div>
     </div>
     <!-- 首页 -->
-    <div class="global" style="transform: translateZ(-333.5px);">
+    <div class="global" style="transform: translateZ(-333.5px);display: none;">
       <div class="screen ease">
         <section class="layer layer1" style="position: absolute;transform:rotateX(0deg) translateZ(333.5px);">
           <div class="inner animated">
@@ -518,26 +47,660 @@
             </div>
           </div>
         </section>
+        <section class="layer layer2" id="layer2" style="position: absolute; transform: rotateX(-90deg) translateZ(333.5px);">
+          <div class="inner animated">
+            <div class="hd hd_bd">
+              <span class="tit">淘汰赛赛程</span>
+            </div>
+            <div class="bd">
+              <div id="js_tab_menu">
+                <ul>
+                  <li class="on"><span>1/8决赛</span></li>
+                  <li><span>1/4决赛</span></li>
+                  <li><span>半决赛</span></li>
+                  <li><span>决赛</span></li>
+                </ul>
+              </div>
+              <div id="js_tab_contents">
+                <div class="conitem one">
+                  <div id="wrap_box">
+                    <div id="scroller_1">
+                      <img class="bg" _src="http://mat1.gtimg.com/sports/worldcup2014/match/line1.png" src="http://mat1.gtimg.com/sports/worldcup2014/match/line1.png">
+                      <div class="items_box">
+                        <div class="item not_start">
+                          <span class="num">64</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">德国</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6">
+                              </span>
+                              <span class="name">阿根廷</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月14日</p>
+                            <p>03:00</p>
+                            <p class="state">1-0</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                        <div class="item not_start mt25">
+                          <span class="num">63</span>
+                          <ul class="country_list">
+                            <li class="first">
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                              </span>
+                              <span class="name">巴西</span>
+                              <span class="score"></span>
+                            </li>
+                            <li>
+                              <span class="flag">
+                                <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                              </span>
+                              <span class="name">荷兰</span>
+                              <span class="score"></span>
+                            </li>
+                          </ul>
+                          <div class="des">
+                            <p>7月13日</p>
+                            <p>04:00</p>
+                            <p class="state">0-3</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="conitem two">
+                  <img class="bg" _src="http://mat1.gtimg.com/sports/worldcup2014/match/line2.png" src="http://mat1.gtimg.com/sports/worldcup2014/match/line2.png">
+                  <div class="items_box">
+                    <div class="item not_start">
+                      <span class="num">64</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">德国</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6">
+                          </span>
+                          <span class="name">阿根廷</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月14日</p>
+                        <p>03:00</p>
+                        <p class="state">1-0</p>
+                      </div>
+                    </div>
+                    <div class="item not_start mt25">
+                      <span class="num">63</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                          </span>
+                          <span class="name">巴西</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">荷兰</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月13日</p>
+                        <p>04:00</p>
+                        <p class="state">0-3</p>
+                      </div>
+                    </div>
+                    <div class="item not_start mt25">
+                      <span class="num">63</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                          </span>
+                          <span class="name">巴西</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">荷兰</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月13日</p>
+                        <p>04:00</p>
+                        <p class="state">0-3</p>
+                      </div>
+                    </div>
+                    <div class="item not_start mt25">
+                      <span class="num">63</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                          </span>
+                          <span class="name">巴西</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">荷兰</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月13日</p>
+                        <p>04:00</p>
+                        <p class="state">0-3</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="conitem three">
+                  <img class="bg" _src="http://mat1.gtimg.com/sports/worldcup2014/match/line3.png" src="http://mat1.gtimg.com/sports/worldcup2014/match/line3.png">
+                  <div class="items_box">
+                    <div class="item not_start">
+                      <span class="num">64</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">德国</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6">
+                          </span>
+                          <span class="name">阿根廷</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月14日</p>
+                        <p>03:00</p>
+                        <p class="state">1-0</p>
+                      </div>
+                    </div>
+                    <div class="item not_start mt25">
+                      <span class="num">63</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                          </span>
+                          <span class="name">巴西</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">荷兰</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月13日</p>
+                        <p>04:00</p>
+                        <p class="state">0-3</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="conitem four">
+                  <img class="bg" _src="http://mat1.gtimg.com/sports/worldcup2014/match/line4.png" src="http://mat1.gtimg.com/sports/worldcup2014/match/line4.png">
+                  <div class="items_box">
+                    <div class="item not_start">
+                      <span class="num">64</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">德国</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6" src="http://f.seals.qq.com/filestore/10006/da/64/87/0/sportlogo/team_1_632.png?v=6">
+                          </span>
+                          <span class="name">阿根廷</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月14日</p>
+                        <p>03:00</p>
+                        <p class="state">1-0</p>
+                      </div>
+                    </div>
+                    <div class="item not_start mt25">
+                      <span class="num">63</span>
+                      <ul class="country_list">
+                        <li class="first">
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg" src="http://img1.gtimg.com/2014/pics/hv1/104/48/1641/106718369.jpg">
+                          </span>
+                          <span class="name">巴西</span>
+                          <span class="score"></span>
+                        </li>
+                        <li>
+                          <span class="flag">
+                            <img _src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg" src="http://img1.gtimg.com/2014/pics/hv1/186/49/1641/106718706.jpg">
+                          </span>
+                          <span class="name">荷兰</span>
+                          <span class="score"></span>
+                        </li>
+                      </ul>
+                      <div class="des">
+                        <p>7月13日</p>
+                        <p>04:00</p>
+                        <p class="state">0-3</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="layer layer3" id="layer3" style="position:absolute;transform:rotateX(180deg) translateZ(333.5px);">
+          <div class="inner">
+            <div class="hd hd_bd">
+              <span class="tit">分组赛程</span>
+            </div>
+            <div class="bd">
+              <ul class="list cf">
+                <li class="item itemA"><span class="group">A</span>组</li>
+                <li class="item itemB"><span class="group">B</span>组</li>
+                <li class="item itemC"><span class="group">C</span>组</li>
+                <li class="item itemD"><span class="group">D</span>组</li>
+                <li class="item itemLogo"><span class="group"></span></li>
+                <li class="item itemE"><span class="group">E</span>组</li>
+                <li class="item itemF"><span class="group">F</span>组</li>
+                <li class="item itemG"><span class="group">G</span>组</li>
+                <li class="item itemH"><span class="group">H</span>组</li>
+              </ul>
+            </div>
+            <div class="swipe_tip">
+            </div>
+          </div>
+        </section>
+        <section class="layer layer4" id="layer4" style="position:absolute;transform:rotateX(-270deg) translateZ(333.5px);">
+          <div class="inner">
+            <div class="hd hd_bd"><span class="tit">世界杯完全赛程</span></div>
+            <div class="timeline">
+              <div class="timeline_bd">
+                <div class="time_scale">
+                  <i class="arr_top"></i>
+                  <div id="goHome" class="go_home"></div>
+                </div>
+                <div class="linebox" id="wrapper">
+                  <div class="lineinner" id="scroller">
+                    <ul>
+                      <li data-item="0" class="item  delay0">
+                        <i class="dot"></i>
+                        <div class="day">
+                          <time>6月13日</time>
+                          <p>星期五</p>
+                        </div>
+                        <div class="box ">
+                          <dl class="cf">
+                            <dt class="time fl">4:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">01</span>巴西 3-1 克罗地亚<span class="hot">HOT</span>
+                              </div>凌晨起床看完揭幕战，洗洗去上班。
+                            </dd>
+                          </dl>
+                        </div>
+                      </li>
+                      <li data-item="1" class="item  delay1">
+                        <i class="dot"></i>
+                        <div class="day">
+                          <time>6月14日</time>
+                          <p>星期六</p>
+                        </div>
+                        <div class="box ">
+                          <dl class="cf">
+                            <dt class="time fl">0:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">02</span>墨西哥 1-0 喀麦隆<span class="hot">HOT</span>
+                              </div>
+                            </dd>
+                          </dl>
+                          <dl class="cf">
+                            <dt class="time fl">3:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">03</span>西班牙 1-5 荷兰<span class="hot">HOT</span>
+                              </div>周末真好，约上好友刷夜看球，清晨5点开始补觉。
+                            </dd>
+                          </dl>
+                          <dl class="cf">
+                            <dt class="time fl">6:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">04</span>智利 3-1 澳大利亚<span class="hot">HOT</span>
+                              </div>
+                            </dd>
+                          </dl>
+                        </div>
+                      </li>
+                      <li data-item="2" class="item  delay2">
+                        <i class="dot"></i>
+                        <div class="day">
+                          <time>6月15日</time>
+                          <p>星期日</p>
+                        </div>
+                        <div class="box ">
+                          <dl class="cf">
+                            <dt class="time fl">0:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">02</span>墨西哥 1-0 喀麦隆<span class="hot">HOT</span>
+                              </div>
+                            </dd>
+                          </dl>
+                          <dl class="cf">
+                            <dt class="time fl">3:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">03</span>西班牙 1-5 荷兰<span class="hot">HOT</span>
+                              </div>周末真好，约上好友刷夜看球，清晨5点开始补觉。
+                            </dd>
+                          </dl>
+                          <dl class="cf">
+                            <dt class="time fl">6:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">04</span>智利 3-1 澳大利亚<span class="hot">HOT</span>
+                              </div>
+                            </dd>
+                          </dl>
+                        </div>
+                      </li>
+                      <li data-item="3" class="item  delay3">
+                        <i class="dot"></i>
+                        <div class="day">
+                          <time>6月16日</time>
+                          <p>星期一</p>
+                        </div>
+                        <div class="box ">
+                          <dl class="cf">
+                            <dt class="time fl">0:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">02</span>墨西哥 1-0 喀麦隆<span class="hot">HOT</span>
+                              </div>
+                            </dd>
+                          </dl>
+                          <dl class="cf">
+                            <dt class="time fl">3:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">03</span>西班牙 1-5 荷兰<span class="hot">HOT</span>
+                              </div>周末真好，约上好友刷夜看球，清晨5点开始补觉。
+                            </dd>
+                          </dl>
+                          <dl class="cf">
+                            <dt class="time fl">6:00</dt>
+                            <dd class="text ">
+                              <div class="tit">
+                                <span class="num">04</span>智利 3-1 澳大利亚<span class="hot">HOT</span>
+                              </div>
+                            </dd>
+                          </dl>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ft cf" style="display:none;">
+                <span class="fl"><img width="98" height="16" src="http://mat1.gtimg.com/sports/worldcup2014/match/sports_logo.png" alt="腾讯体育"></span>
+                <span class="fr"><img width="120" height="13" src="http://mat1.gtimg.com/sports/worldcup2014/match/ued_wfe.png" alt="UED-WFE"></span>
+            </div>
+            <div class="zh_bar">
+              <img width="320" src="http://mat1.gtimg.com/sports/worldcup2014/match/zh_bar_3.png" alt="">
+            </div>
+            <div class="swipe_tip">
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="story" style="display: none;">
+      <div class="storyshadow"></div>
+      <div class="storydialog"></div>
+      <div class="full_screen dialog_index opacity">
+        <img width="320" src="http://mat1.gtimg.com/sports/worldcup2014/match/zh_img_new_0624.jpg" alt="">
+        <a href="" class="link">
+          <img width="320" src="http://mat1.gtimg.com/sports/worldcup2014/match/zh_link_0624.png" alt="">
+        </a>
+        <span class="close"></span>
       </div>
     </div>
   </div>
-  <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
-  <script>
-    $(function(){
-      $('.layer,.screen').css('width',window.innerWidth)
-      $('.layer,.screen').css('height',window.innerHeight)
-      $('.layer .btn').click(function() {
-        if($(this).hasClass('btn4')){
-          return;
-        }
-        $(this).addClass('btnAnimate');
-        var self = this;
-        setTimeout(function(){
-          $(self).removeClass('btnAnimate')
-          isBtnAnimate = false;
-        },2000)
-      })
-    });
-  </script>
 </body>
 </html>
